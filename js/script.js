@@ -7,11 +7,11 @@ hamburger.addEventListener("click", () => {
 
 const modal = document.getElementById("bookingModal");
 
-function openModal(){
+function openModal() {
   modal.style.display = "flex";
 }
 
-function closeModal(){
+function closeModal() {
   modal.style.display = "none";
 }
 
@@ -24,13 +24,13 @@ document.querySelector(".modal-overlay").onclick = closeModal;
 
 /* FORM VALIDATION */
 
-document.getElementById("bookingForm").addEventListener("submit", function(e){
+document.getElementById("bookingForm").addEventListener("submit", function (e) {
 
   const phone = this.phone.value.trim();
 
   const phonePattern = /^[0-9+\-\s()]{7,15}$/;
 
-  if(!phonePattern.test(phone)){
+  if (!phonePattern.test(phone)) {
     alert("Please enter a valid phone number");
     e.preventDefault();
     return;
@@ -41,24 +41,32 @@ document.getElementById("bookingForm").addEventListener("submit", function(e){
 
 const portfolioData = {
   wedding: [
-    "images/wedding/w1.png",
-    "images/wedding/w2.jpg",
-    "images/wedding/w3.jpg"
+    "images/wedding/W1.jpg",
+    "images/wedding/W2.jpg",
+    "images/wedding/W3.jpg",
+    "images/wedding/W4.jpg",
+    "images/wedding/W5.jpg",
   ],
   prewedding: [
-    "images/prewedding/p1.jpg",
-    "images/prewedding/p2.jpg"
+    "images/prewedding/P1.jpg",
+    "images/prewedding/P2.jpg",
+    "images/prewedding/P3.jpg"
   ],
   portrait: [
-    "images/portrait/pt1.jpg",
-    "images/portrait/pt2.jpg"
+    "images/portrait/M1.jpg",
+    "images/portrait/M2.jpg",
+    "images/portrait/M3.jpg"
   ],
   events: [
-    "images/events/e1.jpg",
-    "images/events/e2.jpg"
+    "images/events/B1.jpg",
+    "images/events/B2.jpg",
+    "images/events/B3.jpg",
+    "images/events/B4.jpg"
   ],
   graphics: [
-    "images/graphics/g1.jpg"
+    "images/graphics/G1.jpg",
+    "images/graphics/G2.jpg",
+    "images/graphics/G3.jpg",
   ]
 };
 
@@ -69,14 +77,14 @@ const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 
 // 🔹 Render function
-function showImages(category){
+function showImages(category) {
 
   grid.innerHTML = "";
 
   let imagesToShow = [];
 
-  if(category === "all"){
-    Object.values(portfolioData).forEach(arr=>{
+  if (category === "all") {
+    Object.values(portfolioData).forEach(arr => {
       imagesToShow = imagesToShow.concat(arr);
     });
   } else {
@@ -92,7 +100,7 @@ function showImages(category){
     img.src = src;
 
     // LIGHTBOX CLICK
-    img.addEventListener("click", ()=>{
+    img.addEventListener("click", () => {
       lightbox.style.display = "flex";
       lightboxImg.src = src;
     });
@@ -104,8 +112,8 @@ function showImages(category){
 }
 
 // 🔹 Filter buttons
-buttons.forEach(btn=>{
-  btn.addEventListener("click", ()=>{
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
 
     document.querySelector(".filter-btn.active").classList.remove("active");
     btn.classList.add("active");
@@ -116,12 +124,12 @@ buttons.forEach(btn=>{
 });
 
 // 🔹 Lightbox close
-document.querySelector(".close-lightbox").onclick = ()=>{
+document.querySelector(".close-lightbox").onclick = () => {
   lightbox.style.display = "none";
 };
 
-lightbox.onclick = (e)=>{
-  if(e.target === lightbox){
+lightbox.onclick = (e) => {
+  if (e.target === lightbox) {
     lightbox.style.display = "none";
   }
 };

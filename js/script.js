@@ -48,9 +48,9 @@ const portfolioData = {
     "images/wedding/W5.jpg",
   ],
   prewedding: [
-    "images/prewedding/P1.jpg",
-    "images/prewedding/P2.jpg",
-    "images/prewedding/P3.jpg"
+    "images/prewedding/S1.jpg",
+    "images/prewedding/S2.jpg",
+    "images/prewedding/S3.jpg"
   ],
   portrait: [
     "images/portrait/M1.jpg",
@@ -58,10 +58,10 @@ const portfolioData = {
     "images/portrait/M3.jpg"
   ],
   events: [
-    "images/events/B1.jpg",
-    "images/events/B2.jpg",
-    "images/events/B3.jpg",
-    "images/events/B4.jpg"
+    "images/events/E1.jpg",
+    "images/events/E2.jpg",
+    "images/events/E3.jpg",
+    "images/events/E4.jpg"
   ],
   graphics: [
     "images/graphics/G1.jpg",

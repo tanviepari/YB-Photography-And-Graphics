@@ -493,6 +493,7 @@ color:#888;
 
 .cta{
 padding:100px 20px;
+margin:auto;
 text-align:center;
 background:#e7dfd8;
 }
@@ -511,18 +512,28 @@ margin:0 auto 35px;
 line-height:1.6;
 }
 
-.cta-btn{
-background:#111;
-color:white;
-padding:14px 30px;
-border-radius:6px;
-text-decoration:none;
-font-weight:500;
-transition:0.3s;
+.cta-btn {
+  display: inline-block;
+  background:#111;
+  color:white;
+  padding:14px 30px;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+  text-align: center;
 }
 
 .cta-btn:hover{
 background:#ffb089;
+}
+
+@media (max-width: 768px) {
+  .cta-btn {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 
 /* FOOTER */

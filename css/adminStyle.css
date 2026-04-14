@@ -1,0 +1,163 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f7f7f7;
+  color: #222;
+}
+
+.container {
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background-color: #111;
+  padding: 30px 20px;
+  color: #ddd;
+}
+
+.sidebar h2 {
+  margin-bottom: 30px;
+  font-family: 'Playfair Display', serif;
+}
+
+.sidebar li {
+  list-style: none;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar li:hover,
+.sidebar .active {
+  background: #ffb089;
+  color: white;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  padding: 40px;
+}
+
+/* Topbar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin: 30px 0;
+}
+
+.card {
+  padding: 25px;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border: 1px solid #ffb089;
+}
+
+/* Replace gradients with theme colors */
+.gradient1,
+.gradient2,
+.gradient3,
+.gradient4 {
+  background: white;
+  color: #222;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* Panels */
+.glass {
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+/* List */
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+/* Status */
+.status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.pending {
+  background: #fff3e8;
+  color: #d17b2f;
+}
+
+.confirmed {
+  background: #eaf7f0;
+  color: #2e8b57;
+}
+
+.time {
+  color: #888;
+}
+
+/* Sections */
+.section { display: none; }
+.active-section { display: block; }
+
+/* Buttons (optional add for consistency) */
+.btn {
+  background: #111;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #ffb089;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cards { grid-template-columns: 1fr 1fr; }
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+
+  .main {
+    padding: 20px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

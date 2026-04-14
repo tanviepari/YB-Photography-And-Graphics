@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Contact | YB Studio</title>
-    <link rel="icon" type="image/x-icon" href="images/YB.jpeg">
-    
+    <link rel="icon" type="image/x-icon" href="images/YB.jpeg" />
+
     <link rel="stylesheet" href="css/style.css" />
     <!-- Google Font -->
     <link
@@ -18,7 +18,7 @@
   <body>
     <nav class="navbar">
       <div class="logo" style="color: black">
-        <img src="images/wedding/YB copy.png" alt="Logo" class="logo-img">
+        <img src="images/wedding/YB copy.png" alt="Logo" class="logo-img" />
       </div>
       <ul class="nav-links">
         <li><a href="index.html" style="color: black">Home</a></li>
@@ -56,25 +56,36 @@
             <form id="contactForm">
               <div class="form-group">
                 <label>Full Name *</label>
-                <input type="text" name="name" required />
+                <input type="text" id="contactName" required />
+                <small class="error" id="contactNameError"></small>
               </div>
 
               <div class="form-group">
                 <label>Email Address *</label>
-                <input type="email" name="email" required />
+                <input type="email" id="contactEmail" required />
+                <small class="error" id="contactEmailError"></small>
               </div>
 
               <div class="form-group">
                 <label>Phone Number</label>
-                <input type="tel" name="phone" />
+                <input type="tel" id="contactPhone" />
+                <small class="error" id="contactPhoneError"></small>
               </div>
 
               <div class="form-group">
                 <label>Your Message *</label>
-                <textarea name="message" rows="5" required></textarea>
+                <textarea id="contactMessage" rows="5" required></textarea>
+                <small class="error" id="contactMessageError"></small>
               </div>
 
-              <button type="submit" class="submit-btn">Send Message</button>
+              <button
+                type="submit"
+                class="submit-btn"
+                id="contactSubmitBtn"
+                disabled
+              >
+                Send Message
+              </button>
             </form>
           </div>
 
@@ -145,20 +156,27 @@
 
         <div class="footer-col">
           <h4>Follow Us</h4>
-          <ul><li>
-          <a href="https://www.instagram.com/ybphotographygraphics/" target="_blank">
-            Instagram
-          </a>
-          </li></ul>
+          <ul>
+            <li>
+              <a
+                href="https://www.instagram.com/ybphotographygraphics/"
+                target="_blank"
+              >
+                Instagram
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 Yogesh Borekar - Photograpgy & Graphics Studio | Privacy Policy</p>
+        <p>
+          © 2026 Yogesh Borekar - Photograpgy & Graphics Studio | Privacy Policy
+        </p>
       </div>
     </footer>
 
-     <!-- BOOKING MODAL -->
+    <!-- BOOKING MODAL -->
 
     <div class="booking-modal" id="bookingModal">
       <div class="modal-overlay"></div>
@@ -173,57 +191,182 @@
           <div class="form-row">
             <div class="form-group">
               <label>Full Name *</label>
-              <input type="text" name="name" required />
+              <input type="text" id="bookingName" required />
+              <small class="error" id="bookingNameError"></small>
             </div>
 
             <div class="form-group">
               <label>Email Address *</label>
-              <input type="email" name="email" required />
+              <input type="email" id="bookingEmail" required />
+              <small class="error" id="bookingEmailError"></small>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label>Phone Number *</label>
-              <input type="tel" name="phone" required />
+              <input type="tel" id="bookingPhone" required />
+              <small class="error" id="bookingPhoneError"></small>
             </div>
 
             <div class="form-group">
               <label>Event Type *</label>
-              <select name="event_type" required>
+              <select id="bookingEvent" required>
                 <option value="">Select event type</option>
                 <option>Wedding & Related</option>
-                <option>Events (Birthday, Anniversery, etc)</option>
+                <option>Events (Birthday, Anniversary, etc)</option>
                 <option>Portrait</option>
                 <option>Other</option>
               </select>
+              <small class="error" id="bookingEventError"></small>
             </div>
           </div>
 
           <div class="form-group">
             <label>Preferred Date *</label>
-            <input type="date" name="event_date" required />
+            <input type="date" id="bookingDate" required />
+            <small class="error" id="bookingDateError"></small>
           </div>
 
           <div class="form-group">
             <label>Location</label>
-            <input type="text" name="location" />
+            <input type="text" id="bookingLocation" />
           </div>
 
           <div class="form-group">
             <label>Tell us about your vision</label>
-            <textarea name="message" rows="4"></textarea>
+            <textarea id="bookingMessage" rows="4"></textarea>
           </div>
 
           <div class="form-actions">
             <button type="button" class="cancel-btn" id="cancelModal">
               Cancel
             </button>
-            <button type="submit" class="submit-btn">Submit Enquiry</button>
+            <button
+              type="submit"
+              class="submit-btn"
+              id="bookingSubmitBtn"
+              disabled
+            >
+              Submit Enquiry
+            </button>
           </div>
         </form>
       </div>
     </div>
     <script src="js/script.js"></script>
+    <script>
+      const contactName = document.getElementById("contactName");
+      const contactEmail = document.getElementById("contactEmail");
+      const contactPhone = document.getElementById("contactPhone");
+      const contactMessage = document.getElementById("contactMessage");
+      const contactSubmitBtn = document.getElementById("contactSubmitBtn");
+
+      // Errors
+      const contactNameError = document.getElementById("contactNameError");
+      const contactEmailError = document.getElementById("contactEmailError");
+      const contactPhoneError = document.getElementById("contactPhoneError");
+      const contactMessageError = document.getElementById(
+        "contactMessageError",
+      );
+
+      // Regex
+      const nameRegex = /^[A-Za-z\s]{3,}$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^[0-9]{10}$/;
+
+      // Validation
+      function validateContactName() {
+        if (!nameRegex.test(contactName.value.trim())) {
+          contactNameError.textContent = "Enter valid name (min 3 letters)";
+          contactName.classList.add("error-border");
+          return false;
+        }
+        contactNameError.textContent = "";
+        contactName.classList.remove("error-border");
+        contactName.classList.add("valid");
+        return true;
+      }
+
+      function validateContactEmail() {
+        if (!emailRegex.test(contactEmail.value.trim())) {
+          contactEmailError.textContent = "Enter valid email";
+          contactEmail.classList.add("error-border");
+          return false;
+        }
+        contactEmailError.textContent = "";
+        contactEmail.classList.remove("error-border");
+        contactEmail.classList.add("valid");
+        return true;
+      }
+
+      function validateContactPhone() {
+        if (contactPhone.value.trim() === "") {
+          contactPhoneError.textContent = "";
+          contactPhone.classList.remove("error-border");
+          return true; // optional field
+        }
+
+        if (!phoneRegex.test(contactPhone.value.trim())) {
+          contactPhoneError.textContent = "Enter valid 10-digit number";
+          contactPhone.classList.add("error-border");
+          return false;
+        }
+
+        contactPhoneError.textContent = "";
+        contactPhone.classList.remove("error-border");
+        contactPhone.classList.add("valid");
+        return true;
+      }
+
+      function validateContactMessage() {
+        if (contactMessage.value.trim().length < 10) {
+          contactMessageError.textContent =
+            "Message must be at least 10 characters";
+          contactMessage.classList.add("error-border");
+          return false;
+        }
+        contactMessageError.textContent = "";
+        contactMessage.classList.remove("error-border");
+        contactMessage.classList.add("valid");
+        return true;
+      }
+
+      // FIXED: RETURNS BOOLEAN
+      function checkContactFormValidity() {
+        const isValid =
+          validateContactName() &&
+          validateContactEmail() &&
+          validateContactPhone() &&
+          validateContactMessage();
+
+        contactSubmitBtn.disabled = !isValid;
+        return isValid; // IMPORTANT FIX
+      }
+
+      // Real-time validation
+      contactName.addEventListener("input", checkContactFormValidity);
+      contactEmail.addEventListener("input", checkContactFormValidity);
+      contactPhone.addEventListener("input", checkContactFormValidity);
+      contactMessage.addEventListener("input", checkContactFormValidity);
+
+      // Submit
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          if (!checkContactFormValidity()) return;
+
+          alert("Message sent successfully!");
+
+          this.reset();
+          contactSubmitBtn.disabled = true;
+
+          document
+            .querySelectorAll("#contactForm input, #contactForm textarea")
+            .forEach((el) => el.classList.remove("valid"));
+        });
+    </script>
   </body>
 </html>

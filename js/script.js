@@ -21,23 +21,124 @@ document.getElementById("cancelModal").onclick = closeModal;
 /* CLOSE WHEN CLICK OUTSIDE */
 document.querySelector(".modal-overlay").onclick = closeModal;
 
+// SAFETY CHECK
+const bookingForm = document.getElementById("bookingForm");
 
-/* FORM VALIDATION */
+if (bookingForm) {
+  const name = document.getElementById("bookingName");
+  const email = document.getElementById("bookingEmail");
+  const phone = document.getElementById("bookingPhone");
+  const event = document.getElementById("bookingEvent");
+  const date = document.getElementById("bookingDate");
+  const submitBtn = document.getElementById("bookingSubmitBtn");
 
-document.getElementById("bookingForm").addEventListener("submit", function (e) {
+  const nameError = document.getElementById("bookingNameError");
+  const emailError = document.getElementById("bookingEmailError");
+  const phoneError = document.getElementById("bookingPhoneError");
+  const eventError = document.getElementById("bookingEventError");
+  const dateError = document.getElementById("bookingDateError");
 
-  const phone = this.phone.value.trim();
+  const nameRegex = /^[A-Za-z\s]{3,}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^[0-9]{10}$/;
 
-  const phonePattern = /^[0-9+\-\s()]{7,15}$/;
-
-  if (!phonePattern.test(phone)) {
-    alert("Please enter a valid phone number");
-    e.preventDefault();
-    return;
+  function validateName() {
+    if (!nameRegex.test(name.value.trim())) {
+      nameError.textContent = "Enter valid name";
+      name.classList.add("error-border");
+      return false;
+    }
+    nameError.textContent = "";
+    name.classList.remove("error-border");
+    name.classList.add("valid");
+    return true;
   }
 
-  alert("Form submitted successfully!");
-});
+  function validateEmail() {
+    if (!emailRegex.test(email.value.trim())) {
+      emailError.textContent = "Enter valid email";
+      email.classList.add("error-border");
+      return false;
+    }
+    emailError.textContent = "";
+    email.classList.remove("error-border");
+    email.classList.add("valid");
+    return true;
+  }
+
+  function validatePhone() {
+    if (!phoneRegex.test(phone.value.trim())) {
+      phoneError.textContent = "Enter 10-digit number";
+      phone.classList.add("error-border");
+      return false;
+    }
+    phoneError.textContent = "";
+    phone.classList.remove("error-border");
+    phone.classList.add("valid");
+    return true;
+  }
+
+  function validateEvent() {
+    if (!event.value) {
+      eventError.textContent = "Select event type";
+      event.classList.add("error-border");
+      return false;
+    }
+    eventError.textContent = "";
+    event.classList.remove("error-border");
+    event.classList.add("valid");
+    return true;
+  }
+
+  function validateDate() {
+    if (!date.value) {
+      dateError.textContent = "Select a date";
+      date.classList.add("error-border");
+      return false;
+    }
+    dateError.textContent = "";
+    date.classList.remove("error-border");
+    date.classList.add("valid");
+    return true;
+  }
+
+  // FIXED BOOLEAN RETURN
+  function checkBookingFormValidity() {
+    const isValid =
+      validateName() &&
+      validateEmail() &&
+      validatePhone() &&
+      validateEvent() &&
+      validateDate();
+
+    submitBtn.disabled = !isValid;
+    return isValid;
+  }
+
+  // Real-time validation
+  name.addEventListener("input", checkBookingFormValidity);
+  email.addEventListener("input", checkBookingFormValidity);
+  phone.addEventListener("input", checkBookingFormValidity);
+  event.addEventListener("change", checkBookingFormValidity);
+  date.addEventListener("change", checkBookingFormValidity);
+
+  // Submit
+  bookingForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (!checkBookingFormValidity()) return;
+
+    alert("Booking request submitted!");
+
+    this.reset();
+    submitBtn.disabled = true;
+
+    document
+      .querySelectorAll("#bookingForm input, #bookingForm select, #bookingForm textarea")
+      .forEach((el) => el.classList.remove("valid"));
+  });
+}
+
 
 const portfolioData = {
   wedding: [

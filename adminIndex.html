@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YB Admin</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/adminStyle.css" />
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>YB</h2>
+    <ul>
+      <li class="active" onclick="showSection('dashboard')">Dashboard</li>
+      <li onclick="showSection('bookings')">Bookings</li>
+      <li onclick="showSection('contacts')">Contacts</li>
+      <li onclick="showSection('feedback')">Feedback</li>
+    </ul>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <div class="topbar">
+      <h1>Dashboard</h1>
+      <div class="profile">Admin</div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="section active-section">
+
+      <!-- Gradient Cards -->
+      <div class="cards">
+        <div class="card gradient1"><h3>120</h3><p>Bookings</p></div>
+        <div class="card gradient2"><h3>45</h3><p>Enquiries</p></div>
+        <div class="card gradient3"><h3>30</h3><p>Messages</p></div>
+        <div class="card gradient4"><h3>80</h3><p>Feedback</p></div>
+      </div>
+
+      <!-- Grid -->
+      <div class="dashboard-grid">
+
+        <div class="panel glass">
+          <h3>Recent Bookings</h3>
+          <div class="list">
+            <div class="item"><span>Tanvi - Wedding</span><span class="status pending">Pending</span></div>
+            <div class="item"><span>Riya - Shoot</span><span class="status confirmed">Confirmed</span></div>
+            <div class="item"><span>Aman - Event</span><span class="status pending">Pending</span></div>
+          </div>
+        </div>
+
+        <div class="panel glass">
+          <h3>Recent Contacts</h3>
+          <div class="list">
+            <div class="item"><span>Aman</span><span class="time">2h</span></div>
+            <div class="item"><span>Priya</span><span class="time">5h</span></div>
+            <div class="item"><span>Neha</span><span class="time">1d</span></div>
+          </div>
+        </div>
+
+        <div class="panel glass">
+          <h3>Top Feedback</h3>
+          <div class="list">
+            <div class="item">⭐⭐⭐⭐⭐ Amazing!</div>
+            <div class="item">⭐⭐⭐⭐ Loved it!</div>
+            <div class="item">⭐⭐⭐⭐⭐ Perfect!</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Other sections same -->
+    <section id="bookings" class="section"><h2>Bookings</h2></section>
+    <section id="contacts" class="section"><h2>Contacts</h2></section>
+    <section id="feedback" class="section"><h2>Feedback</h2></section>
+
+  </main>
+</div>
+
+<script src="js/adminScript.js"></script>
+</body>
+</html>

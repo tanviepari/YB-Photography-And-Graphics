@@ -122,54 +122,71 @@ if (bookingForm) {
   event.addEventListener("change", checkBookingFormValidity);
   date.addEventListener("change", checkBookingFormValidity);
 
+  const getApiUrl = (path) => {
+    const isLocalFile = window.location.protocol === 'file:';
+    return isLocalFile ? `http://localhost:5001${path}` : path;
+  };
+
   // Submit
-  bookingForm.addEventListener("submit", function (e) {
+  bookingForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     if (!checkBookingFormValidity()) return;
 
-    alert("Booking request submitted!");
+    const data = {
+      name: name.value,
+      email: email.value,
+      phone: phone.value,
+      event_type: event.value,
+      event_date: date.value,
+      location: document.getElementById("bookingLocation").value,
+      message: document.getElementById("bookingMessage").value
+    };
 
-    this.reset();
-    submitBtn.disabled = true;
+    try {
+      const response = await fetch(getApiUrl('/api/book'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
 
-    document
-      .querySelectorAll("#bookingForm input, #bookingForm select, #bookingForm textarea")
-      .forEach((el) => el.classList.remove("valid"));
+      const result = await response.json();
+
+      if (result.success) {
+        alert("Booking request submitted successfully! We will contact you soon.");
+        this.reset();
+        submitBtn.disabled = true;
+        closeModal();
+        document
+          .querySelectorAll("#bookingForm input, #bookingForm select, #bookingForm textarea")
+          .forEach((el) => el.classList.remove("valid"));
+      } else {
+        alert("Error: " + result.error);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Please try again later.");
+    }
   });
 }
 
 
-const portfolioData = {
-  wedding: [
-    "images/wedding/W1.jpg",
-    "images/wedding/W2.jpg",
-    "images/wedding/W3.jpg",
-    "images/wedding/W4.jpg",
-    "images/wedding/W5.jpg",
-  ],
-  prewedding: [
-    "images/prewedding/S1.jpg",
-    "images/prewedding/S2.jpg",
-    "images/prewedding/S3.jpg"
-  ],
-  portrait: [
-    "images/portrait/M1.jpg",
-    "images/portrait/M2.jpg",
-    "images/portrait/M3.jpg"
-  ],
-  events: [
-    "images/events/E1.jpg",
-    "images/events/E2.jpg",
-    "images/events/E3.jpg",
-    "images/events/E4.jpg"
-  ],
-  graphics: [
-    "images/graphics/G1.jpg",
-    "images/graphics/G2.jpg",
-    "images/graphics/G3.jpg",
-  ]
-};
+let allImages = [];
+
+async function fetchGalleryImages() {
+  const getApiUrl = (path) => {
+    const isLocalFile = window.location.protocol === 'file:';
+    return isLocalFile ? `http://localhost:5001${path}` : path;
+  };
+
+  try {
+    const res = await fetch(getApiUrl('/api/gallery'));
+    allImages = await res.json();
+    showImages("all");
+  } catch (err) {
+    console.error("Error fetching gallery images:", err);
+  }
+}
 
 const grid = document.querySelector(".portfolio-grid");
 const buttons = document.querySelectorAll(".filter-btn");
@@ -179,37 +196,42 @@ const lightboxImg = document.getElementById("lightbox-img");
 
 // 🔹 Render function
 function showImages(category) {
-
   grid.innerHTML = "";
-
   let imagesToShow = [];
 
   if (category === "all") {
-    Object.values(portfolioData).forEach(arr => {
-      imagesToShow = imagesToShow.concat(arr);
-    });
+    imagesToShow = allImages;
   } else {
-    imagesToShow = portfolioData[category];
+    imagesToShow = allImages.filter(img => img.category === category);
   }
 
-  imagesToShow.forEach(src => {
+  if (imagesToShow.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column: 1/-1; text-align:center; padding: 4rem 2rem; background:white; border-radius:12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+        <p style="font-size: 1.2rem; color: #666; margin-bottom: 1rem;">No images found in this category.</p>
+        <p style="font-size: 0.9rem; color: #999;">The portfolio is now dynamically synced with the database. Add images from the Admin Panel to see them here.</p>
+      </div>
+    `;
+    return;
+  }
 
+  imagesToShow.forEach(item => {
     const div = document.createElement("div");
     div.classList.add("portfolio-item");
 
     const img = document.createElement("img");
-    img.src = src;
+    img.src = item.image_url;
+    img.loading = "lazy";
 
     // LIGHTBOX CLICK
     img.addEventListener("click", () => {
       lightbox.style.display = "flex";
-      lightboxImg.src = src;
+      lightboxImg.src = item.image_url;
     });
 
     div.appendChild(img);
     grid.appendChild(div);
   });
-
 }
 
 // 🔹 Filter buttons
@@ -236,5 +258,5 @@ lightbox.onclick = (e) => {
 };
 
 // 🔹 Initial load
-showImages("all");
+fetchGalleryImages();
 

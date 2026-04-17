@@ -353,19 +353,47 @@
       // Submit
       document
         .getElementById("contactForm")
-        .addEventListener("submit", function (e) {
+        .addEventListener("submit", async function (e) {
           e.preventDefault();
 
           if (!checkContactFormValidity()) return;
 
-          alert("Message sent successfully!");
+          const data = {
+            name: contactName.value,
+            email: contactEmail.value,
+            phone: contactPhone.value,
+            message: contactMessage.value,
+          };
 
-          this.reset();
-          contactSubmitBtn.disabled = true;
+          const getApiUrl = (path) => {
+            const isLocalFile = window.location.protocol === 'file:';
+            return isLocalFile ? `http://localhost:5001${path}` : path;
+          };
 
-          document
-            .querySelectorAll("#contactForm input, #contactForm textarea")
-            .forEach((el) => el.classList.remove("valid"));
+          try {
+            const response = await fetch(getApiUrl("/api/contact"), {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+              alert("Message sent successfully! We will get back to you soon.");
+              this.reset();
+              contactSubmitBtn.disabled = true;
+
+              document
+                .querySelectorAll("#contactForm input, #contactForm textarea")
+                .forEach((el) => el.classList.remove("valid"));
+            } else {
+              alert("Error: " + result.error);
+            }
+          } catch (err) {
+            console.error(err);
+            alert("Something went wrong. Please try again later.");
+          }
         });
     </script>
   </body>

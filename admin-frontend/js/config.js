@@ -12,3 +12,4 @@ const API_CONFIG = {
 
 const getApiUrl = (path) => `${API_CONFIG.baseUrl}${path}`;
 const getRedirectUrl = (path) => `${API_CONFIG.redirectBase}${path}`;
+

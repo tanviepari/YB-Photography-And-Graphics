@@ -366,11 +366,6 @@
             message: contactMessage.value,
           };
 
-          const getApiUrl = (path) => {
-            const isLocalFile = window.location.protocol === 'file:';
-            return isLocalFile ? `http://localhost:5001${path}` : path;
-          };
-
           try {
             const response = await fetch(getApiUrl("/api/contact"), {
               method: "POST",

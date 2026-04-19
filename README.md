@@ -1,12 +1,18 @@
 # YB Photography & Graphics
 
-A modern, responsive multi-page website for a photography and graphics studio, built using HTML, CSS, and JavaScript for Frontend and PostgreSQL for database. This project currently showcases a complete frontend solution with dynamic UI components, interactive features, and clean design.
+YB Photography & Graphics is a full-stack web application designed for a photography and graphics studio, combining a modern responsive frontend with a robust Node.js backend and PostgreSQL database. The platform features dynamic content management, real-time form handling, and an admin dashboard with complete CRUD functionality, enabling efficient management of bookings, client interactions, and gallery assets. Built with scalability and deployment in mind, the project demonstrates end-to-end integration across frontend, backend, database, and cloud-based media services.
+
 
 ---
 
-##  Live Demo
+##  Deployments
 
-🔗 https://tanviepari.github.io/YB-Photography-And-Graphics/
+Github pages: https://tanviepari.github.io/YB-Photography-And-Graphics/
+Frontend (Vercel) : https://yb-photography-user.vercel.app/
+Backend (Render) : https://yb-photography-and-graphics.onrender.com/api/gallery
+Database (Neon): PostgreSQL (schema in YB-Studio-Database.sql)
+Media (Cloudinary): Image storage & optimization
+
 
 ---
 
@@ -48,6 +54,19 @@ A modern, responsive multi-page website for a photography and graphics studio, b
   * Mobile-friendly navigation (hamburger menu)
   * Adaptive layouts for all screen sizes
 
+## Admin Dashboard
+
+A fully functional admin panel with the following capabilities:
+
+- Secure admin authentication
+- Full CRUD operations:
+  - Manage bookings
+  - View and respond to contacts
+  - Manage testimonials
+  - Add/edit/delete gallery images
+- Dynamic image handling for portfolio
+- Real-time updates reflected on frontend
+
 ---
 
 ##  Tech Stack
@@ -56,10 +75,11 @@ A modern, responsive multi-page website for a photography and graphics studio, b
 * **CSS3**
 * **JavaScript (Vanilla JS)**
 * **PostGreSQL**
+* **Node js**
 
 ---
 
-## ⚡ Key Concepts Implemented
+## Key Concepts Implemented
 
 * Dynamic DOM manipulation using JavaScript
 * Component reuse across multiple pages
@@ -67,6 +87,8 @@ A modern, responsive multi-page website for a photography and graphics studio, b
 * Form validation techniques
 * Responsive design with media queries
 * Clean UI/UX design principles
+* Fully functional CRUD admin dashboard
+* Dynamic cloud based portfolio image management
 
 ---
 
@@ -80,14 +102,19 @@ It includes tables for:
 - Gallery
   
 The database schema is provided in the "YB-Studio-Database.sql" file.
+Database is deployed on Neon.
 
 ---
 
-## Future Enhancements
+## Enhancements made
 
 * Backend integration
-* Image upload system for portfolio
-* Admin panel
-* Improved animations and transitions
+* Image upload system for portfolio (Cloudinary for cloud storage of images)
+* Admin panel 
+* Improved UI 
+
+
+
+
 
 

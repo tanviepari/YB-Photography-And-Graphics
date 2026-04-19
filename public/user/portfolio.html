@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Portfolio | YB Studio</title>
+    <link rel="icon" type="image/x-icon" href="images/YB.jpeg" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo" style="color: black">
+        <img src="images/wedding/YB copy.png" alt="Logo" class="logo-img" />
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html" style="color: black">Home</a></li>
+        <li><a href="about.html" style="color: black">About</a></li>
+        <li><a href="portfolio.html" style="color: black">Portfolio</a></li>
+        <li><a href="pricing.html" style="color: black">Pricing</a></li>
+        <li><a href="contact.html" style="color: black">Contact</a></li>
+        <li><a href="feedback.html" style="color: black">Feedback</a></li>
+      </ul>
+
+      <a
+        href="#"
+        class="nav-btn"
+        style="background-color: black; color: white"
+        onclick="openModal()"
+        >Book Now</a
+      >
+      <!-- Hamburger -->
+      <div class="hamburger">☰</div>
+    </nav>
+
+    <section class="portfolio-section" style="background-color: #f7f7f7">
+      <div class="section-header">
+        <h2>Portfolio</h2>
+        <p>
+          A curated collection of our finest work across weddings, portraits,
+          and events
+        </p>
+      </div>
+
+      <!-- FILTER BUTTONS -->
+      <div class="portfolio-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="wedding">Wedding</button>
+        <button class="filter-btn" data-filter="prewedding">Pre Wedding</button>
+        <button class="filter-btn" data-filter="portrait">Portrait</button>
+        <button class="filter-btn" data-filter="events">Events</button>
+        <button class="filter-btn" data-filter="graphics">Graphics</button>
+      </div>
+
+      <!-- EMPTY GRID -->
+      <div class="portfolio-grid"></div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+      <span class="close-lightbox">&times;</span>
+      <img id="lightbox-img" />
+    </div>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>Yogesh Borekar - Photograpgy & Graphics Studio</h3>
+          <p>
+            Capturing life's most precious moments with artistry and elegance.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="portfolio.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>+91 8421565877</p>
+          <p>yog.borekar@gmail.com</p>
+          <p>Yavatmal<br />Maharashtra (445001)</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <ul>
+            <li>
+              <a
+                href="https://www.instagram.com/ybphotographygraphics/"
+                target="_blank"
+              >
+                Instagram
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          © 2026 Yogesh Borekar - Photograpgy & Graphics Studio | Privacy Policy
+        </p>
+      </div>
+    </footer>
+    <!-- BOOKING MODAL -->
+
+    <div class="booking-modal" id="bookingModal">
+      <div class="modal-overlay"></div>
+
+      <div class="modal-box">
+        <div class="modal-header">
+          <h2>Book a Session</h2>
+          <span class="close-btn" id="closeModal">&times;</span>
+        </div>
+
+        <form id="bookingForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" id="bookingName" required />
+              <small class="error" id="bookingNameError"></small>
+            </div>
+
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" id="bookingEmail" required />
+              <small class="error" id="bookingEmailError"></small>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" id="bookingPhone" required />
+              <small class="error" id="bookingPhoneError"></small>
+            </div>
+
+            <div class="form-group">
+              <label>Event Type *</label>
+              <select id="bookingEvent" required>
+                <option value="">Select event type</option>
+                <option>Wedding & Related</option>
+                <option>Events (Birthday, Anniversary, etc)</option>
+                <option>Portrait</option>
+                <option>Other</option>
+              </select>
+              <small class="error" id="bookingEventError"></small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Preferred Date *</label>
+            <input type="date" id="bookingDate" required />
+            <small class="error" id="bookingDateError"></small>
+          </div>
+
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="bookingLocation" />
+          </div>
+
+          <div class="form-group">
+            <label>Tell us about your vision</label>
+            <textarea id="bookingMessage" rows="4"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="cancel-btn" id="cancelModal">
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="submit-btn"
+              id="bookingSubmitBtn"
+              disabled
+            >
+              Submit Enquiry
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>

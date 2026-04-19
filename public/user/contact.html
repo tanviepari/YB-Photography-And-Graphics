@@ -1,0 +1,400 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Contact | YB Studio</title>
+    <link rel="icon" type="image/x-icon" href="images/YB.jpeg" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo" style="color: black">
+        <img src="images/wedding/YB copy.png" alt="Logo" class="logo-img" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" style="color: black">Home</a></li>
+        <li><a href="about.html" style="color: black">About</a></li>
+        <li><a href="portfolio.html" style="color: black">Portfolio</a></li>
+        <li><a href="pricing.html" style="color: black">Pricing</a></li>
+        <li><a href="contact.html" style="color: black">Contact</a></li>
+        <li><a href="feedback.html" style="color: black">Feedback</a></li>
+      </ul>
+
+      <a
+        href="#"
+        class="nav-btn"
+        style="background-color: black; color: white"
+        onclick="openModal()"
+        >Book Now</a
+      >
+      <!-- Hamburger -->
+      <div class="hamburger">☰</div>
+    </nav>
+    <section class="contact-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Get in Touch</h2>
+          <p>
+            We'd love to hear about your event and how we can capture your story
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- LEFT: FORM -->
+          <div class="contact-form-box">
+            <h3>Send us a Message</h3>
+
+            <form id="contactForm">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="contactName" required />
+                <small class="error" id="contactNameError"></small>
+              </div>
+
+              <div class="form-group">
+                <label>Email Address *</label>
+                <input type="email" id="contactEmail" required />
+                <small class="error" id="contactEmailError"></small>
+              </div>
+
+              <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="contactPhone" />
+                <small class="error" id="contactPhoneError"></small>
+              </div>
+
+              <div class="form-group">
+                <label>Your Message *</label>
+                <textarea id="contactMessage" rows="5" required></textarea>
+                <small class="error" id="contactMessageError"></small>
+              </div>
+
+              <button
+                type="submit"
+                class="submit-btn"
+                id="contactSubmitBtn"
+                disabled
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          <!-- RIGHT: INFO -->
+          <div class="contact-info">
+            <h3>Contact Information</h3>
+
+            <div class="info-item">
+              <strong>Phone</strong>
+              <p>+91 8421565877</p>
+              <span>Mon-Fri, 10am-6pm IST</span>
+            </div>
+
+            <div class="info-item">
+              <strong>Email</strong>
+              <p>yog.borekar@gmail.com</p>
+              <span>We respond within 24 hours</span>
+            </div>
+
+            <div class="info-item">
+              <strong>Address</strong>
+              <p>Yavatmal<br />Maharashtra (445001)</p>
+            </div>
+
+            <div class="info-item">
+              <strong>Studio Hours</strong>
+              <p>Monday - Friday: 9am - 6pm<br />Saturday: 10am - 4pm</p>
+              <span>By appointment only</span>
+            </div>
+
+            <div class="info-item">
+              <strong>Follow Us</strong>
+              <div class="socials">
+                <p>@ybphotographygraphics</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>Yogesh Borekar - Photograpgy & Graphics Studio</h3>
+          <p>
+            Capturing life's most precious moments with artistry and elegance.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="portfolio.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>+91 8421565877</p>
+          <p>yog.borekar@gmail.com</p>
+          <p>Yavatmal<br />Maharashtra (445001)</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <ul>
+            <li>
+              <a
+                href="https://www.instagram.com/ybphotographygraphics/"
+                target="_blank"
+              >
+                Instagram
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          © 2026 Yogesh Borekar - Photograpgy & Graphics Studio | Privacy Policy
+        </p>
+      </div>
+    </footer>
+
+    <!-- BOOKING MODAL -->
+
+    <div class="booking-modal" id="bookingModal">
+      <div class="modal-overlay"></div>
+
+      <div class="modal-box">
+        <div class="modal-header">
+          <h2>Book a Session</h2>
+          <span class="close-btn" id="closeModal">&times;</span>
+        </div>
+
+        <form id="bookingForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" id="bookingName" required />
+              <small class="error" id="bookingNameError"></small>
+            </div>
+
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" id="bookingEmail" required />
+              <small class="error" id="bookingEmailError"></small>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" id="bookingPhone" required />
+              <small class="error" id="bookingPhoneError"></small>
+            </div>
+
+            <div class="form-group">
+              <label>Event Type *</label>
+              <select id="bookingEvent" required>
+                <option value="">Select event type</option>
+                <option>Wedding & Related</option>
+                <option>Events (Birthday, Anniversary, etc)</option>
+                <option>Portrait</option>
+                <option>Other</option>
+              </select>
+              <small class="error" id="bookingEventError"></small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Preferred Date *</label>
+            <input type="date" id="bookingDate" required />
+            <small class="error" id="bookingDateError"></small>
+          </div>
+
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="bookingLocation" />
+          </div>
+
+          <div class="form-group">
+            <label>Tell us about your vision</label>
+            <textarea id="bookingMessage" rows="4"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="cancel-btn" id="cancelModal">
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="submit-btn"
+              id="bookingSubmitBtn"
+              disabled
+            >
+              Submit Enquiry
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="js/script.js"></script>
+    <script>
+      const contactName = document.getElementById("contactName");
+      const contactEmail = document.getElementById("contactEmail");
+      const contactPhone = document.getElementById("contactPhone");
+      const contactMessage = document.getElementById("contactMessage");
+      const contactSubmitBtn = document.getElementById("contactSubmitBtn");
+
+      // Errors
+      const contactNameError = document.getElementById("contactNameError");
+      const contactEmailError = document.getElementById("contactEmailError");
+      const contactPhoneError = document.getElementById("contactPhoneError");
+      const contactMessageError = document.getElementById(
+        "contactMessageError",
+      );
+
+      // Regex
+      const nameRegex = /^[A-Za-z\s]{3,}$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^[0-9]{10}$/;
+
+      // Validation
+      function validateContactName() {
+        if (!nameRegex.test(contactName.value.trim())) {
+          contactNameError.textContent = "Enter valid name (min 3 letters)";
+          contactName.classList.add("error-border");
+          return false;
+        }
+        contactNameError.textContent = "";
+        contactName.classList.remove("error-border");
+        contactName.classList.add("valid");
+        return true;
+      }
+
+      function validateContactEmail() {
+        if (!emailRegex.test(contactEmail.value.trim())) {
+          contactEmailError.textContent = "Enter valid email";
+          contactEmail.classList.add("error-border");
+          return false;
+        }
+        contactEmailError.textContent = "";
+        contactEmail.classList.remove("error-border");
+        contactEmail.classList.add("valid");
+        return true;
+      }
+
+      function validateContactPhone() {
+        if (contactPhone.value.trim() === "") {
+          contactPhoneError.textContent = "";
+          contactPhone.classList.remove("error-border");
+          return true; // optional field
+        }
+
+        if (!phoneRegex.test(contactPhone.value.trim())) {
+          contactPhoneError.textContent = "Enter valid 10-digit number";
+          contactPhone.classList.add("error-border");
+          return false;
+        }
+
+        contactPhoneError.textContent = "";
+        contactPhone.classList.remove("error-border");
+        contactPhone.classList.add("valid");
+        return true;
+      }
+
+      function validateContactMessage() {
+        if (contactMessage.value.trim().length < 10) {
+          contactMessageError.textContent =
+            "Message must be at least 10 characters";
+          contactMessage.classList.add("error-border");
+          return false;
+        }
+        contactMessageError.textContent = "";
+        contactMessage.classList.remove("error-border");
+        contactMessage.classList.add("valid");
+        return true;
+      }
+
+      // FIXED: RETURNS BOOLEAN
+      function checkContactFormValidity() {
+        const isValid =
+          validateContactName() &&
+          validateContactEmail() &&
+          validateContactPhone() &&
+          validateContactMessage();
+
+        contactSubmitBtn.disabled = !isValid;
+        return isValid; // IMPORTANT FIX
+      }
+
+      // Real-time validation
+      contactName.addEventListener("input", checkContactFormValidity);
+      contactEmail.addEventListener("input", checkContactFormValidity);
+      contactPhone.addEventListener("input", checkContactFormValidity);
+      contactMessage.addEventListener("input", checkContactFormValidity);
+
+      // Submit
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          if (!checkContactFormValidity()) return;
+
+          const data = {
+            name: contactName.value,
+            email: contactEmail.value,
+            phone: contactPhone.value,
+            message: contactMessage.value,
+          };
+
+          const getApiUrl = (path) => {
+            const isLocalFile = window.location.protocol === 'file:';
+            return isLocalFile ? `http://localhost:5001${path}` : path;
+          };
+
+          try {
+            const response = await fetch(getApiUrl("/api/contact"), {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+              alert("Message sent successfully! We will get back to you soon.");
+              this.reset();
+              contactSubmitBtn.disabled = true;
+
+              document
+                .querySelectorAll("#contactForm input, #contactForm textarea")
+                .forEach((el) => el.classList.remove("valid"));
+            } else {
+              alert("Error: " + result.error);
+            }
+          } catch (err) {
+            console.error(err);
+            alert("Something went wrong. Please try again later.");
+          }
+        });
+    </script>
+  </body>
+</html>

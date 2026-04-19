@@ -30,7 +30,10 @@ const PORT = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, './')));
+app.use(express.static(path.join(__dirname, 'public/shared'))); // shared assets like css, js
+app.use('/admin', express.static(path.join(__dirname, 'public/shared'))); // allow admin route to see shared assets
+app.use(express.static(path.join(__dirname, 'public/user'))); // map root to user frontend
+app.use('/admin', express.static(path.join(__dirname, 'public/admin'))); // map /admin to admin frontend
 
 // --- CLIENT ENDPOINTS ---
 
@@ -200,13 +203,25 @@ app.get('/api/gallery', async (req, res) => {
     const result = await db.query('SELECT * FROM gallery ORDER BY photo_id DESC');
     res.json(result.rows);
   } catch (err) {
-    console.error(err);
+    console.error("Gallery Fetch Error:", JSON.stringify(err, Object.getOwnPropertyNames(err), 2));
     res.status(500).json({ error: 'Database error' });
   }
 });
 
 // Upload a photo
-app.post('/api/gallery', upload.single('image'), async (req, res) => {
+app.post('/api/gallery', (req, res, next) => {
+  upload.single('image')(req, res, (err) => {
+    if (err) {
+      console.error("DEBUG [Multer/Cloudinary Error]:", JSON.stringify(err, Object.getOwnPropertyNames(err), 2));
+      return res.status(500).json({ 
+        success: false, 
+        error: 'Image upload rejected by Cloudinary.',
+        details: err.message || 'Check your VSCode Terminal for exact Cloudinary error.'
+      });
+    }
+    next();
+  });
+}, async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ success: false, error: 'No image file uploaded' });
@@ -239,6 +254,23 @@ app.delete('/api/gallery/:id', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, error: 'Database error' });
+  }
+});
+
+// Admin Login checking against .env
+app.post('/api/admin/login', (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({ success: false, error: 'Username and password required' });
+  }
+
+  const envUser = process.env.ADMIN_USERNAME || 'admin';
+  const envPass = process.env.ADMIN_PASSWORD || 'admin123';
+
+  if (username === envUser && password === envPass) {
+    res.json({ success: true, message: 'Login successful' });
+  } else {
+    res.status(401).json({ success: false, error: 'Invalid username or password' });
   }
 });
 

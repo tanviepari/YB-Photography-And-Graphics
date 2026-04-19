@@ -1,0 +1,382 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Feedback | YB Studio</title>
+    <link rel="icon" type="image/x-icon" href="images/YB.jpeg" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo" style="color: black">
+        <img src="images/wedding/YB copy.png" alt="Logo" class="logo-img" />
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html" style="color: black">Home</a></li>
+        <li><a href="about.html" style="color: black">About</a></li>
+        <li><a href="portfolio.html" style="color: black">Portfolio</a></li>
+        <li><a href="pricing.html" style="color: black">Pricing</a></li>
+        <li><a href="contact.html" style="color: black">Contact</a></li>
+        <li><a href="feedback.html" style="color: black">Feedback</a></li>
+      </ul>
+
+      <a
+        href="#"
+        class="nav-btn"
+        style="background-color: black; color: white"
+        onclick="openModal()"
+        >Book Now</a
+      >
+      <!-- Hamburger -->
+      <div class="hamburger">☰</div>
+    </nav>
+    <section class="feedback-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Share Your Feedback</h2>
+          <p>We value your experience and would love to hear your thoughts</p>
+        </div>
+
+        <div class="feedback-box">
+          <form id="feedbackForm">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" name="name" id="name" required />
+              <small class="error" id="nameError"></small>
+            </div>
+
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" name="email" id="email" required />
+              <small class="error" id="emailError"></small>
+            </div>
+
+            <div class="form-group">
+              <label>Rating *</label>
+              <div class="rating" id="rating">
+                <span data-value="1">★</span>
+                <span data-value="2">★</span>
+                <span data-value="3">★</span>
+                <span data-value="4">★</span>
+                <span data-value="5">★</span>
+              </div>
+              <input type="hidden" name="rating" id="ratingValue" required />
+              <small class="error" id="ratingError"></small>
+            </div>
+
+            <div class="form-group">
+              <label>Your Feedback *</label>
+              <textarea
+                name="message"
+                id="message"
+                rows="5"
+                required
+              ></textarea>
+              <small class="error" id="messageError"></small>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn" disabled>
+              Submit Feedback
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>Yogesh Borekar - Photograpgy & Graphics Studio</h3>
+          <p>
+            Capturing life's most precious moments with artistry and elegance.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="portfolio.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>+91 8421565877</p>
+          <p>yog.borekar@gmail.com</p>
+          <p>Yavatmal<br />Maharashtra (445001)</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <ul>
+            <li>
+              <a
+                href="https://www.instagram.com/ybphotographygraphics/"
+                target="_blank"
+              >
+                Instagram
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          © 2026 Yogesh Borekar - Photograpgy & Graphics Studio | Privacy Policy
+        </p>
+      </div>
+    </footer>
+
+    <!-- BOOKING MODAL -->
+
+    <div class="booking-modal" id="bookingModal">
+      <div class="modal-overlay"></div>
+
+      <div class="modal-box">
+        <div class="modal-header">
+          <h2>Book a Session</h2>
+          <span class="close-btn" id="closeModal">&times;</span>
+        </div>
+
+        <form id="bookingForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" id="bookingName" required />
+              <small class="error" id="bookingNameError"></small>
+            </div>
+
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" id="bookingEmail" required />
+              <small class="error" id="bookingEmailError"></small>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" id="bookingPhone" required />
+              <small class="error" id="bookingPhoneError"></small>
+            </div>
+
+            <div class="form-group">
+              <label>Event Type *</label>
+              <select id="bookingEvent" required>
+                <option value="">Select event type</option>
+                <option>Wedding & Related</option>
+                <option>Events (Birthday, Anniversary, etc)</option>
+                <option>Portrait</option>
+                <option>Other</option>
+              </select>
+              <small class="error" id="bookingEventError"></small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Preferred Date *</label>
+            <input type="date" id="bookingDate" required />
+            <small class="error" id="bookingDateError"></small>
+          </div>
+
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="bookingLocation" />
+          </div>
+
+          <div class="form-group">
+            <label>Tell us about your vision</label>
+            <textarea id="bookingMessage" rows="4"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="cancel-btn" id="cancelModal">
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="submit-btn"
+              id="bookingSubmitBtn"
+              disabled
+            >
+              Submit Enquiry
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const messageInput = document.getElementById("message");
+      const ratingValue = document.getElementById("ratingValue");
+      const submitBtn = document.getElementById("submitBtn");
+
+      // Error elements
+      const nameError = document.getElementById("nameError");
+      const emailError = document.getElementById("emailError");
+      const messageError = document.getElementById("messageError");
+      const ratingError = document.getElementById("ratingError");
+
+      // REGEX
+      const nameRegex = /^[A-Za-z\s]{3,}$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // VALIDATION FUNCTIONS
+      function validateName() {
+        if (!nameRegex.test(nameInput.value.trim())) {
+          nameError.textContent = "Enter a valid name (min 3 letters)";
+          nameInput.classList.add("error-border");
+          return false;
+        }
+        nameError.textContent = "";
+        nameInput.classList.remove("error-border");
+        nameInput.classList.add("valid");
+        return true;
+      }
+
+      function validateEmail() {
+        if (!emailRegex.test(emailInput.value.trim())) {
+          emailError.textContent = "Enter a valid email address";
+          emailInput.classList.add("error-border");
+          return false;
+        }
+        emailError.textContent = "";
+        emailInput.classList.remove("error-border");
+        emailInput.classList.add("valid");
+        return true;
+      }
+
+      function validateMessage() {
+        if (messageInput.value.trim().length < 10) {
+          messageError.textContent = "Feedback must be at least 10 characters";
+          messageInput.classList.add("error-border");
+          return false;
+        }
+        messageError.textContent = "";
+        messageInput.classList.remove("error-border");
+        messageInput.classList.add("valid");
+        return true;
+      }
+
+      function validateRating() {
+        if (!ratingValue.value) {
+          ratingError.textContent = "Please select a rating";
+          return false;
+        }
+        ratingError.textContent = "";
+        return true;
+      }
+
+      // ENABLE BUTTON ONLY IF VALID
+      function checkFormValidity() {
+        if (
+          validateName() &&
+          validateEmail() &&
+          validateMessage() &&
+          validateRating()
+        ) {
+          submitBtn.disabled = false;
+        } else {
+          submitBtn.disabled = true;
+        }
+        return true;
+      }
+
+      // EVENT LISTENERS
+      nameInput.addEventListener("input", () => {
+        validateName();
+        checkFormValidity();
+      });
+
+      emailInput.addEventListener("input", () => {
+        validateEmail();
+        checkFormValidity();
+      });
+
+      messageInput.addEventListener("input", () => {
+        validateMessage();
+        checkFormValidity();
+      });
+
+      // STAR RATING
+      const stars = document.querySelectorAll("#rating span");
+
+      stars.forEach((star, index) => {
+        star.addEventListener("click", () => {
+          ratingValue.value = index + 1;
+
+          stars.forEach((s) => s.classList.remove("active"));
+
+          for (let i = 0; i <= index; i++) {
+            stars[i].classList.add("active");
+          }
+
+          validateRating();
+          checkFormValidity();
+        });
+      });
+
+      // SUBMIT
+      document
+        .getElementById("feedbackForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          if (checkFormValidity()) {
+            const data = {
+              name: nameInput.value,
+              email: emailInput.value,
+              rating: ratingValue.value,
+              message: messageInput.value,
+            };
+
+            const getApiUrl = (path) => {
+              const isLocalFile = window.location.protocol === 'file:';
+              return isLocalFile ? `http://localhost:5001${path}` : path;
+            };
+
+            try {
+              const response = await fetch(getApiUrl("/api/feedback"), {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+              });
+
+              const result = await response.json();
+
+              if (result.success) {
+                alert("Feedback submitted successfully! Thank you for your kind words.");
+                this.reset();
+                submitBtn.disabled = true;
+                stars.forEach((s) => s.classList.remove("active"));
+              } else {
+                alert("Error: " + result.error);
+              }
+            } catch (err) {
+              console.error(err);
+              alert("Something went wrong. Please try again later.");
+            }
+          }
+        });
+    </script>
+  </body>
+</html>

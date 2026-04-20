@@ -7,11 +7,11 @@ YB Photography & Graphics is a full-stack web application designed for a photogr
 
 ##  Deployments
 
-Github pages: https://tanviepari.github.io/YB-Photography-And-Graphics/
-Frontend (Vercel) : https://yb-photography-user.vercel.app/
-Backend (Render) : https://yb-photography-and-graphics.onrender.com/api/gallery
-Database (Neon): PostgreSQL (schema in YB-Studio-Database.sql)
-Media (Cloudinary): Image storage & optimization
+* Github pages: https://tanviepari.github.io/YB-Photography-And-Graphics/
+* Frontend (Vercel) : https://yb-photography-user.vercel.app/
+* Backend (Render) : https://yb-photography-and-graphics.onrender.com/api/gallery
+* Database (Neon): PostgreSQL (schema in YB-Studio-Database.sql)
+* Media (Cloudinary): Image storage & optimization
 
 
 ---
